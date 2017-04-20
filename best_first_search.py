@@ -3,7 +3,7 @@
 # Team Leader: Trevor Farthing (tfarthing)
 # Developer 1: Dominic Soares
 # Developer 2: Kevin Do
-# To run: $ python best_first_search.py
+# To run: $ python3.6 best_first_search.py
 import math
 
 def main():
@@ -17,8 +17,9 @@ def main():
              'T' : [2, 1],
              'V' : [9, 11]}
 
-    print best_first(graph,'C')
-
+    #print best_first(graph,'C')
+    print(alpha_beta('C', 3, (-1)*math.inf, math.inf, True, graph))
+    
 def best_first(graph, start):
     return 0
 
@@ -29,7 +30,7 @@ def alpha_beta(node, depth, alpha, beta, maxPlayer, graph):
     if maxPlayer:
         v = math.inf*(-1)
         for child in graph[node]:
-            v = max(v, alphabeta(child, depth - 1, alpha, beta, False, graph))
+            v = max(v, alpha_beta(child, depth - 1, alpha, beta, False, graph))
             alpha = max(alpha, v)
             if beta <= alpha:
                 break
@@ -37,9 +38,10 @@ def alpha_beta(node, depth, alpha, beta, maxPlayer, graph):
     else:
         v = math.inf
         for child in graph[node]:
-            v = min(v, alphabeta(child, depth - 1, alpha, beta, True, graph))
+            v = min(v, alpha_beta(child, depth - 1, alpha, beta, True, graph))
             beta = min(beta, v)
             if beta <= alpha:
                 break
         return v
     
+main()
