@@ -1,0 +1,1 @@
+# Calculates the gradient, minimizes cost and returns new thetafunction [theta] = gradientDescent (X, Y, theta, alpha, num_iterations)  m = length(Y);  for i = 1:num_iterations    theta = theta - ((alpha/m) * ((X * theta - Y)' * X)');  endforendfunction
